@@ -1,12 +1,16 @@
 import os
 from dotenv import load_dotenv
 import requests
+import streamlit as st
+
 load_dotenv()
+AVIATIONSTACK_API_KEY = os.getenv("AVIATIONSTACK_API_KEY") or st.secrets["AVIATIONSTACK_API_KEY"]
+
 def search_flights(dep,arr):
     flights=[]
     url = "https://api.aviationstack.com/v1/flights"
     params={
-        "access_key":os.getenv("AVIATIONSTACK_API_KEY"),
+        "access_key":AVIATIONSTACK_API_KEY,
         "dep_iata":dep,
         "arr_iata":arr,
         "limit":5

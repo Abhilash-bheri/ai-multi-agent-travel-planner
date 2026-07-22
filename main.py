@@ -10,6 +10,14 @@ from langgraph.prebuilt import ToolNode
 from langchain_core.messages import SystemMessage,AIMessage,HumanMessage,BaseMessage
 from tools.filigt_tool import search_flights
 from tools.tavily_tool import tavily_search
+import os
+import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
+
 load_dotenv()
 from pydantic import BaseModel
 
@@ -17,7 +25,7 @@ class TripInfo(BaseModel):
     departure: str
     arrival: str
     city: str
-llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite",google_api_key=os.getenv("GOOGLE_API_KEY"))
+llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite",google_api_key=GOOGLE_API_KEY)
 
 class TravelState(TypedDict):
     messages : Annotated[List[BaseMessage],operator.add]
