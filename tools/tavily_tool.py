@@ -6,7 +6,7 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY") or st.secrets["TAVILY_API_KEY"]
 
 load_dotenv()
 
-client = TavilyClient(api_key="TAVILY_API_KEY")
+client = TavilyClient(api_key=TAVILY_API_KEY)
 
 def tavily_search(query):
     response = client.search(query=query, max_results=5)
