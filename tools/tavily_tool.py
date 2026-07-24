@@ -31,4 +31,3 @@ Snippet: {snippet}
 
     return "\n\n".join(results)
 
-#print(tavily_search("Hotels in Mumbai"))
